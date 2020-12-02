@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ApiNovoLeads</name>
+    </assembly>
+    <members>
+        <member name="T:ApiNovoLeads.Controllers.ContactoController">
+            <summary>
+            Contactos Controller
+            </summary>
+        </member>
+        <member name="M:ApiNovoLeads.Controllers.ContactoController.Get">
+            <summary>
+            Contactos Get
+            </summary>
+            <returns>lista de contactos</returns>
+        </member>
+        <member name="M:ApiNovoLeads.Controllers.ContactoController.GetById(System.Int32)">
+            <summary>
+            Obtener la categoría por el Id
+            </summary>
+            <param name="Id"></param>
+            <returns>StatusCode 200</returns>
+        </member>
+        <member name="M:ApiNovoLeads.Controllers.ContactoController.Add(ApiNovoLeads.Dto.ContactoAddDto)">
+            <summary>
+            Agregar una nuevo contacto
+            </summary>
+            <param name="dto"></param>
+            <returns>StatusCode 200</returns>
+        </member>
+        <member name="M:ApiNovoLeads.Controllers.ContactoController.Update(ApiNovoLeads.Dto.ContactoUpdateDto)">
+            <summary>
+            Actualizar contacto
+            </summary>
+            <param name="dto"></param>
+            <returns>StatusCode 200</returns>
+        </member>
+        <member name="M:ApiNovoLeads.Controllers.ContactoController.Delete(System.Int32)">
+            <summary>
+            Eliminar un contacto por Id
+            </summary>
+            <param name="Id"></param>
+            <returns>StatusCode 200</returns>
+        </member>
+    </members>
+</doc>
