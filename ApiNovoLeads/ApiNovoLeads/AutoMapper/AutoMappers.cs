@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using ApiNovoLeads.Dto;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace ApiNovoLeads.AutoMapper
 
         public AutoMappers()
         {
+
+            CreateMap<Contacto, ContactoDto>().ReverseMap();
                 
         }
     }

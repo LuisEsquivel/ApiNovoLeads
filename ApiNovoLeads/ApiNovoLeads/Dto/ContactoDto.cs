@@ -8,11 +8,7 @@ namespace ApiNovoLeads.Dto
     public class ContactoDto
     {
 
-        public ContactoDto()
-        {
-            Seguimientos = new HashSet<Seguimiento>();
-        }
-
+  
         public int ContactoIdInt { get; set; }
         public string NombreVar { get; set; }
         public string SolucionVar { get; set; }
@@ -25,9 +21,6 @@ namespace ApiNovoLeads.Dto
         public int? UsuarioAltaInt { get; set; }
         public int? UsuarioModificaInt { get; set; }
 
-        public virtual Usuario UsuarioAltaIntNavigation { get; set; }
-        public virtual Usuario UsuarioModificaIntNavigation { get; set; }
-        public virtual ICollection<Seguimiento> Seguimientos { get; set; }
-
+  
     }
 }

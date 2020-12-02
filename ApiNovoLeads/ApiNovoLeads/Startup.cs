@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiNovoLeads.AutoMapper;
+using ApiPlafonesWeb.Helpers;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +17,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Logging;
+using Newtonsoft.Json;
 
 namespace ApiNovoLeads
 {
@@ -35,6 +41,31 @@ namespace ApiNovoLeads
 
             services.AddAutoMapper(typeof(AutoMappers));
 
+
+            /*Documentation*/
+          
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("ApiContactos", new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Title = "Api Novo Leads",
+                    Version = "v1",
+
+                });
+
+
+                //File Comments Documentation
+                //var FileCommentsDocumentation = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var PathFileCommentsDocumentation = Path.Combine(AppContext.BaseDirectory, "ApiNovoLeadsDocumentation.xml");
+                options.IncludeXmlComments(PathFileCommentsDocumentation);
+
+            });
+
+         
+            /*End Documentation*/
+
+
             services.AddCors();
 
             services.AddMvc();
@@ -47,8 +78,33 @@ namespace ApiNovoLeads
             {
                 /*Soporte para CORS*/
                 app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-                app.UseDeveloperExceptionPage();
+                IdentityModelEventSource.ShowPII = true;
             }
+            else
+            {
+                /*Exceptions in production*/
+                app.UseExceptionHandler(a => a.Run(async context =>
+                {
+                    var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+                    var exception = exceptionHandlerPathFeature.Error;
+
+                    var result = JsonConvert.SerializeObject(new { error = exception.Message });
+                    context.Response.ContentType = "application/json";
+
+                    var response = new Response();
+                    await context.Response.WriteAsync((string)response.ResponseValues(context.Response.StatusCode, null, result.ToString()));
+                }));
+            }
+
+            /*Documentation*/
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/ApiContactos/swagger.json", "Api Novo Leads");
+                options.RoutePrefix = "";
+            });
+            /*End Documentation*/
+
 
             app.UseHttpsRedirection();
 
