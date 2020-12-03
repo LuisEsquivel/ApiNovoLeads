@@ -117,5 +117,32 @@
             <param name="Id"></param>
             <returns>StatusCode 200</returns>
         </member>
+        <member name="M:ApiNovoLeads.Controllers.UsuarioController.Get">
+            <summary>
+            Obtener todos los usuarios
+            </summary>
+            <returns>StatusCode 200</returns>
+        </member>
+        <member name="M:ApiNovoLeads.Controllers.UsuarioController.GetById(System.Int32)">
+            <summary>
+            Obtener usuario por Id
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiNovoLeads.Controllers.UsuarioController.Add(ApiNovoLeads.Dto.Usuario.UsuarioAddDto)">
+            <summary>
+            Registro de usuario
+            </summary>
+            <param name="dto"></param>
+            <returns>StatusCode 200</returns>
+        </member>
+        <member name="M:ApiNovoLeads.Controllers.UsuarioController.Login(ApiNovoLeads.Dto.Usuario.UsuarioDto)">
+            <summary>
+            Login con Email y Password
+            </summary>
+            <param name="dto"></param>
+            <returns>StatusCode 200</returns>
+        </member>
     </members>
 </doc>

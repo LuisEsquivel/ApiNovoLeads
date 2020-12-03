@@ -1,6 +1,7 @@
 ﻿using ApiNovoLeads.Dto;
 using ApiNovoLeads.Dto.Seguimineto;
 using ApiNovoLeads.Dto.TipoSeguimiento;
+using ApiNovoLeads.Dto.Usuario;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,10 @@ namespace ApiNovoLeads.AutoMapper
             CreateMap<TiposDeSeguimiento, TipoSeguimientoAddDto >().ReverseMap();
             CreateMap<TiposDeSeguimiento, TipoSeguimientoUpdateDto >().ReverseMap();
 
+
+            CreateMap<Usuario, UsuarioDto>().ReverseMap();
+            CreateMap<Usuario, UsuarioAddDto>().ReverseMap();
+            CreateMap<Usuario, UsuarioUpdateDto>().ReverseMap();
         }
     }
 }
