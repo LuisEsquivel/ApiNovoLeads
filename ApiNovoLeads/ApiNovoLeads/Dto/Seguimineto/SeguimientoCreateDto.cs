@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace ApiNovoLeads.Dto.Seguimineto
 {
-    public class SeguimientoDto
+    public class SeguimientoCreateDto
     {
-        public int SeguimientoIdInt { get; set; }
         public int? ContactoIdInt { get; set; }
         public int? TipoSeguimientoIdInt { get; set; }
         public string ComentariosText { get; set; }
@@ -16,15 +15,6 @@ namespace ApiNovoLeads.Dto.Seguimineto
         public string WhatsappVar { get; set; }
         public int? PctjedecierreInt { get; set; }
         public DateTime? FechaAltaDate { get; set; }
-        public DateTime? FechaModificacionDate { get; set; }
         public int? UsuarioAltaInt { get; set; }
-        public int? UsuarioModificaInt { get; set; }
-
-
-        //public virtual Contacto ContactoIdIntNavigation { get; set; }
-        //public virtual TiposDeSeguimiento TipoSeguimientoIdIntNavigation { get; set; }
-        //public virtual Usuario UsuarioAltaIntNavigation { get; set; }
-        //public virtual Usuario UsuarioModificaIntNavigation { get; set; }
-
     }
 }

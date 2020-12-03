@@ -54,6 +54,13 @@ namespace ApiNovoLeads
 
                 });
 
+                options.SwaggerDoc("ApiSeguimientos", new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Title = "Seguimientos",
+                    Version = "v1",
+
+                });
+
 
                 //File Comments Documentation
                 //var FileCommentsDocumentation = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -101,6 +108,7 @@ namespace ApiNovoLeads
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/ApiContactos/swagger.json", "Api Novo Leads");
+                options.SwaggerEndpoint("/swagger/ApiSeguimientos/swagger.json", "Seguimientos");
                 options.RoutePrefix = "";
             });
             /*End Documentation*/

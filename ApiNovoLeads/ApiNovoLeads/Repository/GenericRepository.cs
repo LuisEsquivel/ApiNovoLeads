@@ -79,5 +79,10 @@ namespace ApiPlafonesWeb.Repository
         {
             return _context.SaveChanges() >= 0 ? true : false;
         }
+
+        public bool ExistById(int id)
+        {
+            return _context.Seguimientos.Any(c => c.SeguimientoIdInt == id);
+        }
     }
 }

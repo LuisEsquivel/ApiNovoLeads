@@ -11,6 +11,7 @@ namespace ApiPlafonesWeb.Interface
         T GetById(object id);
         IEnumerable<T> GetByValues(Func<T, bool> values);
         bool Exist(Func<T, bool> values);
+        bool ExistById(int id);
         bool Add(T obj);
         bool Update(T obj, int id = 0);
         bool Delete(object id);

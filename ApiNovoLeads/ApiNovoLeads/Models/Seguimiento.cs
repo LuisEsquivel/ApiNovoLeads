@@ -7,6 +7,7 @@ namespace ApiNovoLeads
 {
     public partial class Seguimiento
     {
+
         public int SeguimientoIdInt { get; set; }
         public int? ContactoIdInt { get; set; }
         public int? TipoSeguimientoIdInt { get; set; }
