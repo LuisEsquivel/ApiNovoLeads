@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -9,16 +8,13 @@ namespace ApiNovoLeads
 {
     public partial class ApplicationDbContext : DbContext
     {
-  
+        public ApplicationDbContext()
+        {
+        }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-        }
-
-        public ApplicationDbContext()
-        {
-
         }
 
         public virtual DbSet<Contacto> Contactos { get; set; }
@@ -26,14 +22,7 @@ namespace ApiNovoLeads
         public virtual DbSet<TiposDeSeguimiento> TiposDeSeguimientos { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
-       
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //      optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-        //    }
-        //}
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -162,9 +151,7 @@ namespace ApiNovoLeads
 
                 entity.ToTable("TiposDeSeguimiento");
 
-                entity.Property(e => e.TipoSeguimientoIdInt)
-                    .ValueGeneratedNever()
-                    .HasColumnName("tipoSeguimientoID_int");
+                entity.Property(e => e.TipoSeguimientoIdInt).HasColumnName("tipoSeguimientoID_int");
 
                 entity.Property(e => e.DescripcionVar)
                     .HasMaxLength(500)
@@ -198,9 +185,7 @@ namespace ApiNovoLeads
             {
                 entity.HasKey(e => e.UsuarioIdInt);
 
-                entity.Property(e => e.UsuarioIdInt)
-                    .ValueGeneratedNever()
-                    .HasColumnName("usuarioID_int");
+                entity.Property(e => e.UsuarioIdInt).HasColumnName("usuarioID_int");
 
                 entity.Property(e => e.FechaAltaDate)
                     .HasColumnType("datetime")

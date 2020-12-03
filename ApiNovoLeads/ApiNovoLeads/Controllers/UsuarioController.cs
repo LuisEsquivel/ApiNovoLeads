@@ -93,13 +93,16 @@ namespace ApiNovoLeads.Controllers
                 return BadRequest(StatusCodes.Status406NotAcceptable);
             }
 
-            byte[] passwordHash;
-            CrearPassword(dto.PasswordVar, out passwordHash);
+            //byte[] passwordHash;
+            //CrearPassword(dto.PasswordVar, out passwordHash);
 
 
             var user = new UsuarioDto();
-            user.PasswordVar = passwordHash.ToString();
+            // user.PasswordVar = Encoding.UTF8.GetString( passwordHash );
+            user.PasswordVar = dto.PasswordVar;
             user.UsuarioVar = dto.UsuarioVar;
+            user.NombreVar = dto.NombreVar;
+            user.FechaAltaDate = DateTime.Now;
 
             var u = mapper.Map<Usuario>(user);
 
@@ -115,7 +118,7 @@ namespace ApiNovoLeads.Controllers
 
 
         /// <summary>
-        /// Login con Email y Password
+        /// Login con UsuarioVar y PasswordVar
         /// </summary>
         /// <param name="dto"></param>
         /// <returns>StatusCode 200</returns>
@@ -123,20 +126,20 @@ namespace ApiNovoLeads.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Login([FromBody] UsuarioDto dto)
+        public IActionResult Login([FromBody] UsuarioLoginDto dto)
         {
             if (dto == null)
             {
                 return Unauthorized();
             }
 
-            var user = repository.GetByValues(x => x.UsuarioVar == dto.UsuarioVar).FirstOrDefault();
-            Byte[] passwordHash = Encoding.ASCII.GetBytes(user.PasswordVar);
 
-            if (!ValidatePassword(dto.PasswordVar, passwordHash))
+            if (!repository.Exist(x=> x.UsuarioVar == dto.UsuarioVar && x.PasswordVar == dto.PasswordVar))
             {
                 return Unauthorized();
             }
+
+            var user = repository.GetByValues(x => x.UsuarioVar == dto.UsuarioVar && x.PasswordVar == dto.PasswordVar).FirstOrDefault();
 
             var claims = new[]
             {

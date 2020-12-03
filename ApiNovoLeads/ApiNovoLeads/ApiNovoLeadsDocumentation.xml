@@ -137,9 +137,9 @@
             <param name="dto"></param>
             <returns>StatusCode 200</returns>
         </member>
-        <member name="M:ApiNovoLeads.Controllers.UsuarioController.Login(ApiNovoLeads.Dto.Usuario.UsuarioDto)">
+        <member name="M:ApiNovoLeads.Controllers.UsuarioController.Login(ApiNovoLeads.Dto.Usuario.UsuarioLoginDto)">
             <summary>
-            Login con Email y Password
+            Login con UsuarioVar y PasswordVar
             </summary>
             <param name="dto"></param>
             <returns>StatusCode 200</returns>
