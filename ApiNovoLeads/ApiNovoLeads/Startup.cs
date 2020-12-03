@@ -54,11 +54,6 @@ namespace ApiNovoLeads
 
                 });
 
-<<<<<<< HEAD
-                options.SwaggerDoc("ApiSeguimientos", new Microsoft.OpenApi.Models.OpenApiInfo()
-                {
-                    Title = "Seguimientos",
-=======
                 //File Comments Documentation
                 //var FileCommentsDocumentation = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var PathFileCommentsDocumentation = Path.Combine(AppContext.BaseDirectory, "ApiNovoLeadsDocumentation.xml");
@@ -67,13 +62,33 @@ namespace ApiNovoLeads
             });
 
 
+
+
+            services.AddSwaggerGen(options =>
+                 {
+
+                     options.SwaggerDoc("ApiSeguimientos", new Microsoft.OpenApi.Models.OpenApiInfo()
+                     {
+                         Title = "Api Novo Leads",
+                         Version = "v1",
+
+                     });
+
+
+                     //File Comments Documentation
+                     //var FileCommentsDocumentation = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                     var PathFileCommentsDocumentation = Path.Combine(AppContext.BaseDirectory, "ApiNovoLeadsDocumentation.xml");
+                     options.IncludeXmlComments(PathFileCommentsDocumentation);
+
+                 });
+
+
             services.AddSwaggerGen(options =>
             {
 
                 options.SwaggerDoc("ApiTiposDeSeguimiento", new Microsoft.OpenApi.Models.OpenApiInfo()
                 {
                     Title = "Api Novo Leads",
->>>>>>> aa5f06cdeaf1b5889b30bff6415f74cb30805667
                     Version = "v1",
 
                 });
@@ -124,13 +139,9 @@ namespace ApiNovoLeads
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-<<<<<<< HEAD
-                options.SwaggerEndpoint("/swagger/ApiContactos/swagger.json", "Api Novo Leads");
-                options.SwaggerEndpoint("/swagger/ApiSeguimientos/swagger.json", "Seguimientos");
-=======
                 options.SwaggerEndpoint("/swagger/ApiContactos/swagger.json", "Api Contactos");
+                options.SwaggerEndpoint("/swagger/ApiSeguimientos/swagger.json", "Api Seguimientos");
                 options.SwaggerEndpoint("/swagger/ApiTiposDeSeguimiento/swagger.json", "Api Tipos De Seguimiento");
->>>>>>> aa5f06cdeaf1b5889b30bff6415f74cb30805667
                 options.RoutePrefix = "";
             });
             /*End Documentation*/

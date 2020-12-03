@@ -43,7 +43,6 @@
             <param name="Id"></param>
             <returns>StatusCode 200</returns>
         </member>
-<<<<<<< HEAD
         <member name="M:ApiNovoLeads.Controllers.SeguimientoController.GetSeguimientos">
             <summary>
             Obtener Seguimientos
@@ -77,7 +76,8 @@
             Eliminar un seguimiento por id
             </summary>
             <param name="seguimientoId"></param>
-=======
+            <returns>StatusCode 200</returns>
+        </member>
         <member name="T:ApiNovoLeads.Controllers.TipoSeguimientoController">
             <summary>
             Tipo De Seguimiento Controller
@@ -115,7 +115,6 @@
             Eliminar un tipo de seguimiento por Id
             </summary>
             <param name="Id"></param>
->>>>>>> aa5f06cdeaf1b5889b30bff6415f74cb30805667
             <returns>StatusCode 200</returns>
         </member>
     </members>
