@@ -1,4 +1,5 @@
 ﻿using ApiNovoLeads.Dto;
+using ApiNovoLeads.Dto.TipoSeguimiento;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,13 @@ namespace ApiNovoLeads.AutoMapper
         {
 
             CreateMap<Contacto, ContactoDto>().ReverseMap();
-                
+            CreateMap<Contacto, ContactoAddDto>().ReverseMap();
+            CreateMap<Contacto, ContactoUpdateDto>().ReverseMap();
+
+            CreateMap<TiposDeSeguimiento, TipoSeguimientoDto>().ReverseMap();
+            CreateMap<TiposDeSeguimiento, TipoSeguimientoAddDto >().ReverseMap();
+            CreateMap<TiposDeSeguimiento, TipoSeguimientoUpdateDto >().ReverseMap();
+
         }
     }
 }

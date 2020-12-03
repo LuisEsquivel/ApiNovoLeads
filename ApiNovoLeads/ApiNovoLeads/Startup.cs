@@ -54,6 +54,24 @@ namespace ApiNovoLeads
 
                 });
 
+                //File Comments Documentation
+                //var FileCommentsDocumentation = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var PathFileCommentsDocumentation = Path.Combine(AppContext.BaseDirectory, "ApiNovoLeadsDocumentation.xml");
+                options.IncludeXmlComments(PathFileCommentsDocumentation);
+
+            });
+
+
+            services.AddSwaggerGen(options =>
+            {
+
+                options.SwaggerDoc("ApiTiposDeSeguimiento", new Microsoft.OpenApi.Models.OpenApiInfo()
+                {
+                    Title = "Api Novo Leads",
+                    Version = "v1",
+
+                });
+
 
                 //File Comments Documentation
                 //var FileCommentsDocumentation = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -62,7 +80,7 @@ namespace ApiNovoLeads
 
             });
 
-         
+
             /*End Documentation*/
 
 
@@ -100,7 +118,8 @@ namespace ApiNovoLeads
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/ApiContactos/swagger.json", "Api Novo Leads");
+                options.SwaggerEndpoint("/swagger/ApiContactos/swagger.json", "Api Contactos");
+                options.SwaggerEndpoint("/swagger/ApiTiposDeSeguimiento/swagger.json", "Api Tipos De Seguimiento");
                 options.RoutePrefix = "";
             });
             /*End Documentation*/
