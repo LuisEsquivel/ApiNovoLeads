@@ -33,9 +33,9 @@ namespace ApiNovoLeads.Controllers
         /// Obtener Seguimientos
         /// </summary>
         /// <returns>lista de seguimientos</returns>
-        [HttpGet("getSeguimientos")]
+        [HttpGet("Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetSeguimientos()
+        public IActionResult Get()
         {
             var list = repository.GetAll();
 
@@ -55,9 +55,9 @@ namespace ApiNovoLeads.Controllers
         /// </summary>
         /// <param name="seguimientoId"></param>
         /// <returns>StatusCode 200</returns>
-        [HttpGet("{seguimientoId:int}", Name = "GetSeguimiento")]
+        [HttpGet("{seguimientoId:int}", Name = "GetById")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetSeguimiento(int seguimientoId)
+        public IActionResult GetById(int seguimientoId)
         {
             var itemSeguimiento = repository.GetById(seguimientoId);
 
@@ -76,11 +76,11 @@ namespace ApiNovoLeads.Controllers
         /// </summary>
         /// <param name="DTO"></param>
         /// <returns>StatusCode 200</returns>
-        [HttpPost("CrearSeguimiento")]
+        [HttpPost("Add")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult CrearSeguimiento([FromForm] SeguimientoCreateDto DTO)
+        public IActionResult Add([FromForm] SeguimientoCreateDto DTO)
         {
             if (DTO == null)
             {
@@ -116,8 +116,8 @@ namespace ApiNovoLeads.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpPatch("{seguimientoId:int}", Name = "UpdateSeguimiento")]
-        public IActionResult UpdateSeguimiento(int seguimientoId, [FromBody] SeguimientoUpdateDto DTO)
+        [HttpPatch("{seguimientoId:int}", Name = "Update")]
+        public IActionResult Update(int seguimientoId, [FromBody] SeguimientoUpdateDto DTO)
         {
             if (DTO == null || seguimientoId != DTO.SeguimientoIdInt)
             {
@@ -140,11 +140,11 @@ namespace ApiNovoLeads.Controllers
         /// </summary>
         /// <param name="seguimientoId"></param>
         /// <returns>StatusCode 200</returns>
-        [HttpDelete("{seguimientoId:int}", Name = "DeleteSeguimiento")]
+        [HttpDelete("{seguimientoId:int}", Name = "Delete")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult DeleteSeguimiento(int seguimientoId)
+        public IActionResult Delete(int seguimientoId)
         {
             if (!repository.ExistById(seguimientoId))
             {
