@@ -34,5 +34,6 @@ namespace ApiNovoLeads.Dto
         [Required(ErrorMessage = "El UsuarioModificaInt es Requerido")]
         public int? UsuarioModificaInt { get; set; }
 
+        public bool? IsActiveBit { get; set; }
     }
 }

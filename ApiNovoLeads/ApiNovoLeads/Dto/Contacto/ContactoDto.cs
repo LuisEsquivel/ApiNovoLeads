@@ -20,7 +20,8 @@ namespace ApiNovoLeads.Dto
         public DateTime? FechaModificacionDate { get; set; }
         public int? UsuarioAltaInt { get; set; }
         public int? UsuarioModificaInt { get; set; }
+        public bool? IsActiveBit { get; set; }
 
-  
+
     }
 }

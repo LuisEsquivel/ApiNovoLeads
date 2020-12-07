@@ -18,6 +18,7 @@ namespace ApiNovoLeads
         public DateTime? FechaModificacionDate { get; set; }
         public int? UsuarioAltaInt { get; set; }
         public int? UsuarioModificaInt { get; set; }
+        public bool? IsActiveBit { get; set; }
 
         public virtual Usuario UsuarioAltaIntNavigation { get; set; }
         public virtual Usuario UsuarioModificaIntNavigation { get; set; }

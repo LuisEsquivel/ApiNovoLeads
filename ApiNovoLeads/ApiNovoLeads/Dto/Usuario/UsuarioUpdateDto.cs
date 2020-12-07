@@ -20,5 +20,7 @@ namespace ApiNovoLeads.Dto.Usuario
         public string PasswordVar { get; set; }
         public DateTime? FechaModificacionDate { get; set; }
         public string UsuarioModificaVar { get; set; }
+
+        public bool? IsActiveBit { get; set; }
     }
 }

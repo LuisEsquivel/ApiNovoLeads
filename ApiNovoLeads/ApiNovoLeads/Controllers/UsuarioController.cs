@@ -134,7 +134,7 @@ namespace ApiNovoLeads.Controllers
             }
 
 
-            if (!repository.Exist(x=> x.UsuarioVar == dto.UsuarioVar && x.PasswordVar == dto.PasswordVar))
+            if (!repository.Exist(x=> x.UsuarioVar == dto.UsuarioVar && x.PasswordVar == dto.PasswordVar && x.IsActiveBit == true))
             {
                 return Unauthorized();
             }
@@ -197,6 +197,43 @@ namespace ApiNovoLeads.Controllers
 
         }
 
+
+
+        /// <summary>
+        /// Eliminar un usuario por Id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns>StatusCode 200</returns>
+        [HttpDelete("Delete/{Id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Delete(int Id)
+        {
+            if (Id <= 0)
+            {
+                return BadRequest(this.response.ResponseValues(StatusCodes.Status406NotAcceptable, null, $"El parámetro (Id) es obligatorio"));
+            }
+
+
+            if (repository.Exist(x => x.UsuarioIdInt == Id))
+            {
+                return BadRequest(this.response.ResponseValues(StatusCodes.Status406NotAcceptable, null, $"El usuario con Id: {Id} No existe"));
+            }
+
+            var row = repository.GetById(Id);
+
+            var usuario = mapper.Map<Usuario>(row);
+
+            if (!repository.Delete(usuario))
+            {
+                return BadRequest(this.response.ResponseValues(StatusCodes.Status500InternalServerError, null, $"Algo salió mal al eliminar el registro: {usuario.NombreVar}"));
+
+            }
+
+
+            return Ok(response.ResponseValues(this.Response.StatusCode));
+        }
 
 
     }

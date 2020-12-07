@@ -13,5 +13,7 @@ namespace ApiNovoLeads.Dto.Usuario
 
         [Required(ErrorMessage = "La PasswordVar es Requerido")]
         public string PasswordVar { get; set; }
+
+        public bool? IsActiveBit { get; set; }
     }
 }

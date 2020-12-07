@@ -19,6 +19,7 @@ namespace ApiNovoLeads
         public DateTime? FechaModificacionDate { get; set; }
         public int? UsuarioAltaInt { get; set; }
         public int? UsuarioModificaInt { get; set; }
+        public bool? IsActiveBit { get; set; }
 
         public virtual Contacto ContactoIdIntNavigation { get; set; }
         public virtual TiposDeSeguimiento TipoSeguimientoIdIntNavigation { get; set; }

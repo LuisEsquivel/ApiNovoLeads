@@ -26,6 +26,8 @@ namespace ApiNovoLeads.Dto.Usuario
         public DateTime? FechaModificacionDate { get; set; }
         public string UsuarioModificaVar { get; set; }
 
+        public bool? IsActiveBit { get; set; }
+
         public virtual ICollection<Contacto> ContactoUsuarioAltaIntNavigations { get; set; }
         public virtual ICollection<Contacto> ContactoUsuarioModificaIntNavigations { get; set; }
         public virtual ICollection<Seguimiento> SeguimientoUsuarioAltaIntNavigations { get; set; }

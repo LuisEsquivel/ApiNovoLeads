@@ -22,7 +22,14 @@ namespace ApiNovoLeads
         public virtual DbSet<TiposDeSeguimiento> TiposDeSeguimientos { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("data source=192.168.210.100;initial catalog=NovoLeads;user id=sa;password=ray2010?");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,6 +48,8 @@ namespace ApiNovoLeads
                 entity.Property(e => e.FechaModificacionDate)
                     .HasColumnType("datetime")
                     .HasColumnName("fechaModificacion_Date");
+
+                entity.Property(e => e.IsActiveBit).HasColumnName("isActive_bit");
 
                 entity.Property(e => e.NombreVar)
                     .HasMaxLength(500)
@@ -100,6 +109,8 @@ namespace ApiNovoLeads
                 entity.Property(e => e.FechaModificacionDate)
                     .HasColumnType("datetime")
                     .HasColumnName("fechaModificacion_Date");
+
+                entity.Property(e => e.IsActiveBit).HasColumnName("IsActive_bit");
 
                 entity.Property(e => e.PctjedecierreInt).HasColumnName("pctjedecierre_int");
 
@@ -166,6 +177,8 @@ namespace ApiNovoLeads
                     .HasColumnType("datetime")
                     .HasColumnName("fechaModificacion_Date");
 
+                entity.Property(e => e.IsActiveBit).HasColumnName("isActive_bit");
+
                 entity.Property(e => e.UsuarioAltaInt).HasColumnName("usuarioAlta_int");
 
                 entity.Property(e => e.UsuarioModificaInt).HasColumnName("usuarioModifica_int");
@@ -194,6 +207,8 @@ namespace ApiNovoLeads
                 entity.Property(e => e.FechaModificacionDate)
                     .HasColumnType("datetime")
                     .HasColumnName("fechaModificacion_Date");
+
+                entity.Property(e => e.IsActiveBit).HasColumnName("isActive_bit");
 
                 entity.Property(e => e.NombreVar)
                     .HasMaxLength(500)

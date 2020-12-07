@@ -33,5 +33,6 @@ namespace ApiNovoLeads.Dto
         [Required(ErrorMessage = "El UsuarioAltaInt es Requerido")]
         public int? UsuarioAltaInt { get; set; }
 
+        public bool? IsActiveBit { get; set; }
     }
 }

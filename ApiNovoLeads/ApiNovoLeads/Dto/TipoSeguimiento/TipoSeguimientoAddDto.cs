@@ -18,7 +18,7 @@ namespace ApiNovoLeads.Dto.TipoSeguimiento
 
         [Required(ErrorMessage = "El UsuarioAltaInt es Requerido")]
         public int? UsuarioAltaInt { get; set; }
- 
 
+        public bool? IsActiveBit { get; set; }
     }
 }

@@ -20,5 +20,6 @@ namespace ApiNovoLeads.Dto.TipoSeguimiento
         [Required(ErrorMessage = "El UsuarioModificaInt es Requerido")]
         public int? UsuarioModificaInt { get; set; }
 
+        public bool? IsActiveBit { get; set; }
     }
 }

@@ -17,5 +17,6 @@ namespace ApiNovoLeads.Dto.Seguimineto
         public int? PctjedecierreInt { get; set; }
         public DateTime? FechaModificacionDate { get; set; }
         public int? UsuarioModificaInt { get; set; }
+        public bool? IsActiveBit { get; set; }
     }
 }
