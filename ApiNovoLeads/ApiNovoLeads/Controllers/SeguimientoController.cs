@@ -80,7 +80,7 @@ namespace ApiNovoLeads.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult Add([FromForm] SeguimientoCreateDto DTO)
+        public IActionResult Add([FromBody] SeguimientoCreateDto DTO)
         {
             if (DTO == null)
             {
@@ -101,7 +101,7 @@ namespace ApiNovoLeads.Controllers
                 return StatusCode(500, ModelState);
             }
 
-            return CreatedAtRoute("GetSeguimiento", new { seguimientoId = seguimiento.SeguimientoIdInt }, seguimiento);
+            return CreatedAtRoute("GetById", new { seguimientoId = seguimiento.SeguimientoIdInt }, seguimiento);
 
         }
 
@@ -109,30 +109,38 @@ namespace ApiNovoLeads.Controllers
         /// <summary>
         /// Actualizar seguimiento
         /// </summary>
-        /// <param name="seguimientoId"></param>
-        /// <param name="DTO"></param>
+        /// <param name="dto"></param>
         /// <returns>StatusCode 200</returns>
-        [HttpPut("UpdateSeguimiento")]
+        [HttpPost("Update")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [HttpPatch("{seguimientoId:int}", Name = "Update")]
-        public IActionResult Update(int seguimientoId, [FromBody] SeguimientoUpdateDto DTO)
+        public IActionResult Update([FromBody] Seguimiento dto)
         {
-            if (DTO == null || seguimientoId != DTO.SeguimientoIdInt)
+            if (dto == null)
             {
-                return BadRequest(ModelState);
+                return BadRequest(StatusCodes.Status406NotAcceptable);
             }
 
-            var seguimiento = mapper.Map<Seguimiento>(DTO);
-
-            if (!repository.Update(seguimiento))
+            if (repository.Exist(x => x.SolucionVar == dto.SolucionVar && x.SeguimientoIdInt != dto.SeguimientoIdInt))
             {
-                ModelState.AddModelError("", $"Algo salio mal actualizando el registro{seguimiento.SolucionVar}");
-                return StatusCode(500, ModelState);
+                return BadRequest(this.response.ResponseValues(StatusCodes.Status406NotAcceptable, null, "La solucion ya existe!!"));
             }
 
-            return NoContent();
+            var seguimiento = mapper.Map<Seguimiento>(dto);
+
+            if (!repository.Update(seguimiento, seguimiento.SeguimientoIdInt))
+            {
+                return BadRequest(this.response.ResponseValues(StatusCodes.Status500InternalServerError, null, $"Algo salió mal al actualizar el registro: {dto.SolucionVar}"));
+            }
+
+
+            return Ok(
+                       response.ResponseValues(this.Response.StatusCode,
+                                               mapper.Map<SeguimientoUpdateDto>(repository.GetById(seguimiento.SeguimientoIdInt))
+                                             )
+                    );
+
         }
 
         /// <summary>

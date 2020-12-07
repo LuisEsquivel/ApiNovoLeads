@@ -19,12 +19,7 @@ namespace ApiNovoLeads.Dto.Seguimineto
         public DateTime? FechaModificacionDate { get; set; }
         public int? UsuarioAltaInt { get; set; }
         public int? UsuarioModificaInt { get; set; }
-
-
-        //public virtual Contacto ContactoIdIntNavigation { get; set; }
-        //public virtual TiposDeSeguimiento TipoSeguimientoIdIntNavigation { get; set; }
-        //public virtual Usuario UsuarioAltaIntNavigation { get; set; }
-        //public virtual Usuario UsuarioModificaIntNavigation { get; set; }
+        public bool? IsActiveBit { get; set; }
 
     }
 }

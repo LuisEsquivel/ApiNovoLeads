@@ -43,35 +43,34 @@
             <param name="Id"></param>
             <returns>StatusCode 200</returns>
         </member>
-        <member name="M:ApiNovoLeads.Controllers.SeguimientoController.GetSeguimientos">
+        <member name="M:ApiNovoLeads.Controllers.SeguimientoController.Get">
             <summary>
             Obtener Seguimientos
             </summary>
             <returns>lista de seguimientos</returns>
         </member>
-        <member name="M:ApiNovoLeads.Controllers.SeguimientoController.GetSeguimiento(System.Int32)">
+        <member name="M:ApiNovoLeads.Controllers.SeguimientoController.GetById(System.Int32)">
             <summary>
             Obtener seguimiento por el Id
             </summary>
             <param name="seguimientoId"></param>
             <returns>StatusCode 200</returns>
         </member>
-        <member name="M:ApiNovoLeads.Controllers.SeguimientoController.CrearSeguimiento(ApiNovoLeads.Dto.Seguimineto.SeguimientoCreateDto)">
+        <member name="M:ApiNovoLeads.Controllers.SeguimientoController.Add(ApiNovoLeads.Dto.Seguimineto.SeguimientoCreateDto)">
             <summary>
             Agregar un nuevo seguimiento
             </summary>
             <param name="DTO"></param>
             <returns>StatusCode 200</returns>
         </member>
-        <member name="M:ApiNovoLeads.Controllers.SeguimientoController.UpdateSeguimiento(System.Int32,ApiNovoLeads.Dto.Seguimineto.SeguimientoUpdateDto)">
+        <member name="M:ApiNovoLeads.Controllers.SeguimientoController.Update(ApiNovoLeads.Seguimiento)">
             <summary>
             Actualizar seguimiento
             </summary>
-            <param name="seguimientoId"></param>
-            <param name="DTO"></param>
+            <param name="dto"></param>
             <returns>StatusCode 200</returns>
         </member>
-        <member name="M:ApiNovoLeads.Controllers.SeguimientoController.DeleteSeguimiento(System.Int32)">
+        <member name="M:ApiNovoLeads.Controllers.SeguimientoController.Delete(System.Int32)">
             <summary>
             Eliminar un seguimiento por id
             </summary>
