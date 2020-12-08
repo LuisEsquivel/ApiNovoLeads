@@ -93,22 +93,11 @@ namespace ApiNovoLeads.Controllers
                 return BadRequest(StatusCodes.Status406NotAcceptable);
             }
 
-            //byte[] passwordHash;
-            //CrearPassword(dto.PasswordVar, out passwordHash);
-
-
-            var user = new UsuarioDto();
-            // user.PasswordVar = Encoding.UTF8.GetString( passwordHash );
-            user.PasswordVar = dto.PasswordVar;
-            user.UsuarioVar = dto.UsuarioVar;
-            user.NombreVar = dto.NombreVar;
-            user.FechaAltaDate = DateTime.Now;
-
-            var u = mapper.Map<Usuario>(user);
+            var u = mapper.Map<Usuario>(dto);
 
             if (!repository.Add(u))
             {
-                return BadRequest(this.response.ResponseValues(StatusCodes.Status500InternalServerError, null, $"Algo salió mal guardar el registro: {user.UsuarioVar}"));
+                return BadRequest(this.response.ResponseValues(StatusCodes.Status500InternalServerError, null, $"Algo salió mal guardar el registro: {u.UsuarioVar}"));
             }
 
             return Ok(this.response.ResponseValues(this.Response.StatusCode, mapper.Map<UsuarioDto>(this.repository.GetById(u.UsuarioIdInt))));
