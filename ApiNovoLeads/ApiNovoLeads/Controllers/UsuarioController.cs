@@ -200,6 +200,46 @@ namespace ApiNovoLeads.Controllers
 
 
         /// <summary>
+        /// Actualizar usuario
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns>StatusCode 200</returns>
+        [HttpPut("Update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult Update([FromBody] UsuarioUpdateDto dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest(StatusCodes.Status406NotAcceptable);
+            }
+
+            if (repository.Exist(x => x.UsuarioVar == dto.UsuarioVar && x.UsuarioIdInt != dto.UsuarioIdInt))
+            {
+                return BadRequest(this.response.ResponseValues(StatusCodes.Status406NotAcceptable, null, "El Usuario Ya Existe!!"));
+            }
+
+            var usuario = mapper.Map<Usuario>(dto);
+            var update = repository.GetByValues(x => x.UsuarioIdInt == dto.UsuarioIdInt).FirstOrDefault();
+            usuario.FechaAltaDate = update.FechaAltaDate;
+
+            if (!repository.Update(usuario, usuario.UsuarioIdInt))
+            {
+                return BadRequest(this.response.ResponseValues(StatusCodes.Status500InternalServerError, null, $"Algo salió mal al actualizar el registro: {dto.NombreVar}"));
+            }
+
+
+            return Ok(
+                       response.ResponseValues(this.Response.StatusCode,
+                                               mapper.Map<Usuario>(repository.GetById(usuario.UsuarioIdInt))
+                                             )
+                    );
+
+        }
+
+
+        /// <summary>
         /// Eliminar un usuario por Id
         /// </summary>
         /// <param name="Id"></param>

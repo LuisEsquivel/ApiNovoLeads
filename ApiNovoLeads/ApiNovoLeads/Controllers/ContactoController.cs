@@ -132,6 +132,9 @@ namespace ApiNovoLeads.Controllers
             }
 
             var contacto = mapper.Map<Contacto>(dto);
+            var update = repository.GetByValues(x => x.ContactoIdInt == dto.ContactoIdInt).FirstOrDefault();
+            contacto.FechaAltaDate = update.FechaAltaDate;
+            contacto.UsuarioAltaInt = update.UsuarioAltaInt;
 
             if (!repository.Update(contacto, contacto.ContactoIdInt))
             {

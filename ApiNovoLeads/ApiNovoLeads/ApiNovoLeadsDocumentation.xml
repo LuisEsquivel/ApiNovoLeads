@@ -143,6 +143,13 @@
             <param name="dto"></param>
             <returns>StatusCode 200</returns>
         </member>
+        <member name="M:ApiNovoLeads.Controllers.UsuarioController.Update(ApiNovoLeads.Dto.Usuario.UsuarioUpdateDto)">
+            <summary>
+            Actualizar usuario
+            </summary>
+            <param name="dto"></param>
+            <returns>StatusCode 200</returns>
+        </member>
         <member name="M:ApiNovoLeads.Controllers.UsuarioController.Delete(System.Int32)">
             <summary>
             Eliminar un usuario por Id

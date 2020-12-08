@@ -128,6 +128,9 @@ namespace ApiNovoLeads.Controllers
             }
 
             var seguimiento = mapper.Map<Seguimiento>(dto);
+            var update = repository.GetByValues(x => x.SeguimientoIdInt == dto.SeguimientoIdInt).FirstOrDefault();
+            seguimiento.FechaAltaDate = update.FechaAltaDate;
+            seguimiento.UsuarioAltaInt = update.UsuarioAltaInt;
 
             if (!repository.Update(seguimiento, seguimiento.SeguimientoIdInt))
             {

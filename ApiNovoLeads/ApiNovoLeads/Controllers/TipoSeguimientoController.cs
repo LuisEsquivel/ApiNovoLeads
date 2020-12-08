@@ -133,6 +133,9 @@ namespace ApiNovoLeads.Controllers
             }
 
             var tiposeguimiento = mapper.Map<TiposDeSeguimiento>(dto);
+            var update = repository.GetByValues(x=>x.TipoSeguimientoIdInt == dto.TipoSeguimientoIdInt).FirstOrDefault();
+            tiposeguimiento.FechaAltaDate = update.FechaAltaDate;
+            tiposeguimiento.UsuarioAltaInt = update.UsuarioAltaInt;
 
             if (!repository.Update(tiposeguimiento, tiposeguimiento.TipoSeguimientoIdInt))
             {
